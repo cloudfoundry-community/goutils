@@ -26,7 +26,7 @@ Setup logging with `SetupLogging()`:
 e.g.:
 
 ```
-SetupLogging(LogConfig{ Type: "console", Level: "warning" })
+log.SetupLogging(LogConfig{ Type: "console", Level: "warning" })
 ```
 
 If logging is not setup, then the messages will simply go to `stdout`. If logging cannot be setup for `file` or `syslog`, then the default `stdout` will be used. An error message will print to `stderr` to notify you if this occurs.
