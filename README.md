@@ -17,6 +17,20 @@ import "github.com/starkandwayne/goutils/{{pkg}}"
 
 ## Log
 
+Setup logging with `SetupLogging()`:
+ * Type: logging mode to use - file, syslog, console
+ * Level: debug, info, error, etc. (See all levels below.)
+ * Facility: syslog facility to log to - daemon, misc, etc.
+ * File: path to log to file if in file mode.
+
+e.g.:
+
+```
+SetupLogging(LogConfig{ Type: "console", Level: "warning" })
+```
+
+If logging is not setup, then the messages will simply go to `stdout`. If logging cannot be setup for `file` or `syslog`, then the default `stdout` will be used. An error message will print to `stderr` to notify you if this occurs.
+
 Log has the following levels defined:
 
 * Debug
