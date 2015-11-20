@@ -6,13 +6,13 @@ S&amp;W Go Utilities
 Get:
 
 ```
-go get github.com/starkandwayne/{{pkg}}
+go get github.com/starkandwayne/goutils/{{pkg}}
 ```
 
 Import:
 
 ```
-import "github.com/starkandwayne/{{pkg}}"
+import "github.com/starkandwayne/goutils/{{pkg}}"
 ```
 
 ## Log
