@@ -1,5 +1,5 @@
 {
-	"ImportPath": "github.com/geofffranks/botta",
+	"ImportPath": "github.com/starkandwayne/goutils/botta",
 	"GoVersion": "go1.6",
 	"Deps": [
 		{
