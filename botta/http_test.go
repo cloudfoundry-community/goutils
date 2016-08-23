@@ -2,13 +2,14 @@ package botta_test
 
 import (
 	"crypto/tls"
-	"github.com/geofffranks/botta"
-	. "github.com/onsi/ginkgo"
-	. "github.com/onsi/gomega"
 	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
 	"os"
+
+	. "github.com/onsi/ginkgo"
+	. "github.com/onsi/gomega"
+	"github.com/starkandwayne/goutils/botta"
 )
 
 func expect_body(req *http.Request, content string) {

@@ -3,9 +3,9 @@ package botta_test
 import (
 	"net/http"
 
-	"github.com/geofffranks/botta"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
+	"github.com/starkandwayne/goutils/botta"
 	"github.com/starkandwayne/goutils/tree"
 )
 
