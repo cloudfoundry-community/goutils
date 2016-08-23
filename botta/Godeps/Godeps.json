@@ -138,11 +138,11 @@
 		},
 		{
 			"ImportPath": "github.com/starkandwayne/goutils/ansi",
-			"Rev": "1af0d9806cdff1eaa84c422f7bea313f3c4d073f"
+			"Rev": "b478d4e827014813fb3d4aad6e8db453b6b626d3"
 		},
 		{
 			"ImportPath": "github.com/starkandwayne/goutils/tree",
-			"Rev": "1af0d9806cdff1eaa84c422f7bea313f3c4d073f"
+			"Rev": "b478d4e827014813fb3d4aad6e8db453b6b626d3"
 		},
 		{
 			"ImportPath": "golang.org/x/sys/unix",
