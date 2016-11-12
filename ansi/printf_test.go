@@ -6,9 +6,9 @@ import (
 
 func TestColorizer(t *testing.T) {
 	var tests = []struct {
-		In  string
-		Out string
-		Not string
+		In  string //The input to the test case
+		Out string //The expected output when colorization is on
+		Not string //The expected output when colorization is off
 	}{
 		{"@k{color}", "\033[00;30mcolor\033[00m", "color"},
 		{"@K{COLOR}", "\033[01;30mCOLOR\033[00m", "COLOR"},
@@ -43,6 +43,9 @@ func TestColorizer(t *testing.T) {
 
 		{"@s@d@l@f", "@s@d@l@f", "@s@d@l@f"},
 		{"host error: %s", "host error: %s", "host error: %s"},
+		{"@r{multiline\nstring}", "\033[00;31mmultiline\nstring\033[00m", "multiline\nstring"},
+		{"@*{R\nA\nI\nN\nB\nO\nW}", "\033[01;31mR\033[00m\n\033[01;33mA\033[00m\n\033[01;32mI\033[00m\n\033[01;36mN\033[00m\n\033[01;34mB\033[00m\n\033[01;35mO\033[00m\n\033[01;31mW\033[00m", "R\nA\nI\nN\nB\nO\nW"},
+		{"@*{R\nA I\tN\vB\fO   W}", "\033[01;31mR\033[00m\n\033[01;33mA\033[00m \033[01;32mI\033[00m\t\033[01;36mN\033[00m\v\033[01;34mB\033[00m\f\033[01;35mO\033[00m   \033[01;31mW\033[00m", "R\nA I\tN\vB\fO   W"},
 	}
 
 	for _, test := range tests {
