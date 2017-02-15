@@ -250,7 +250,9 @@ func (c *Cursor) Glob(tree interface{}) ([]*Cursor, error) {
 				for i, v := range o.([]interface{}) {
 					sub, err := resolver(v, append(here, fmt.Sprintf("%d", i)), path, pos+1)
 					if err != nil {
-						return nil, err
+						if _, ok := err.(NotFoundError); !ok {
+							return nil, err
+						}
 					}
 					paths = append(paths, sub...)
 				}
@@ -259,7 +261,9 @@ func (c *Cursor) Glob(tree interface{}) ([]*Cursor, error) {
 				for k, v := range o.(map[string]interface{}) {
 					sub, err := resolver(v, append(here, k), path, pos+1)
 					if err != nil {
-						return nil, err
+						if _, ok := err.(NotFoundError); !ok {
+							return nil, err
+						}
 					}
 					paths = append(paths, sub...)
 				}
@@ -268,7 +272,9 @@ func (c *Cursor) Glob(tree interface{}) ([]*Cursor, error) {
 				for k, v := range o.(map[interface{}]interface{}) {
 					sub, err := resolver(v, append(here, fmt.Sprintf("%v", k)), path, pos+1)
 					if err != nil {
-						return nil, err
+						if _, ok := err.(NotFoundError); !ok {
+							return nil, err
+						}
 					}
 					paths = append(paths, sub...)
 				}

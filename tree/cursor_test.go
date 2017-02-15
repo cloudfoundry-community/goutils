@@ -391,6 +391,32 @@ var _ = Describe("Cursors", func() {
 				Ω(l[1].String()).Should(Equal("key.simple.list.1"))
 				Ω(l[2].String()).Should(Equal("key.simple.list.2"))
 			})
+
+			It("doesn't error when globbing with '*' doesn't find things", func() {
+				c, err := tree.ParseCursor("key.list.*.optional")
+				Expect(err).ShouldNot(HaveOccurred())
+
+				l, err := c.Glob(T)
+				Expect(err).ShouldNot(HaveOccurred())
+				Expect(len(l)).Should(Equal(1))
+				Expect(l[0].String()).Should(Equal("key.list.1.optional"))
+			})
+			It("throws an error when globbing without '*' doesn't find things", func() {
+				c, err := tree.ParseCursor("key.list.0.optional")
+				Expect(err).ShouldNot(HaveOccurred())
+
+				l, err := c.Glob(T)
+				Expect(err).Should(HaveOccurred())
+				Expect(l).Should(BeNil())
+			})
+			It("throws an error when missing nodes are prior to the first '*' of a Glob", func() {
+				c, err := tree.ParseCursor("key.listnotfound.*.missing")
+				Expect(err).ShouldNot(HaveOccurred())
+
+				l, err := c.Glob(T)
+				Expect(err).Should(HaveOccurred())
+				Expect(l).Should(BeNil())
+			})
 		}
 
 		Context("With JSON trees", func() {
@@ -407,7 +433,8 @@ var _ = Describe("Cursors", func() {
         "quantity": 2
       },{
         "name": "bananas",
-        "quantity": 7
+        "quantity": 7,
+        "optional": "present"
       },{
         "name": "grapes",
         "quantity": 22
@@ -445,6 +472,7 @@ key:
       quantity: 2
     - name:     bananas
       quantity: 7
+      optional: present
     - name:     grapes
       quantity: 22
   nums:
