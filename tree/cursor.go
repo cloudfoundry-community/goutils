@@ -176,6 +176,7 @@ func (c *Cursor) Canonical(o interface{}) (*Cursor, error) {
 					}
 				}
 				o = o.([]interface{})[i]
+				canon.Push(fmt.Sprintf("%d", i))
 			} else {
 				// if k is a string, look for immediate map descendants who have
 				//     'name', 'key' or 'id' fields matching k
@@ -186,8 +187,8 @@ func (c *Cursor) Canonical(o interface{}) (*Cursor, error) {
 						Path: canon.Nodes,
 					}
 				}
+				canon.Push(fmt.Sprintf("%s", k))
 			}
-			canon.Push(fmt.Sprintf("%d", i))
 
 		case map[string]interface{}:
 			canon.Push(k)
