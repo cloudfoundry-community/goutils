@@ -267,6 +267,52 @@ var _ = Describe("Cursors", func() {
 		})
 	})
 
+	Context("Contains()", func() {
+		It("handles equivalent paths", func() {
+			a, e1 := tree.ParseCursor("x.y.z")
+			b, e2 := tree.ParseCursor("x.y.z")
+
+			Ω(e1).Should(BeNil())
+			Ω(e2).Should(BeNil())
+
+			Ω(a.Contains(b)).Should(BeTrue())
+			Ω(b.Contains(a)).Should(BeTrue())
+		})
+
+		It("handles disparate paths", func() {
+			a, e1 := tree.ParseCursor("A.B.C")
+			b, e2 := tree.ParseCursor("w.x.y.z")
+
+			Ω(e1).Should(BeNil())
+			Ω(e2).Should(BeNil())
+
+			Ω(a.Contains(b)).Should(BeFalse())
+			Ω(b.Contains(a)).Should(BeFalse())
+		})
+
+		It("handles empty paths", func() {
+			a, e1 := tree.ParseCursor("")
+			b, e2 := tree.ParseCursor("a.b.c")
+
+			Ω(e1).Should(BeNil())
+			Ω(e2).Should(BeNil())
+
+			Ω(a.Contains(b)).Should(BeFalse())
+			Ω(b.Contains(a)).Should(BeFalse())
+		})
+
+		It("correctly identifies subtree relationships", func() {
+			a, e1 := tree.ParseCursor("meta.templates")
+			b, e2 := tree.ParseCursor("meta.templates.0.job")
+
+			Ω(e1).Should(BeNil())
+			Ω(e2).Should(BeNil())
+
+			Ω(a.Contains(b)).Should(BeTrue())
+			Ω(b.Contains(a)).Should(BeFalse())
+		})
+	})
+
 	Context("Resolve()", func() {
 		TestResolve := func(fn func() interface{}) {
 			var T interface{}
