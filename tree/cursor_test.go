@@ -136,14 +136,14 @@ var _ = Describe("Cursors", func() {
 			canon, err := c.Canonical(T)
 			Ω(err).ShouldNot(HaveOccurred())
 			Ω(canon).ShouldNot(BeNil())
-			Ω(canon.String()).Should(Equal("key.list.second.value"))
+			Ω(canon.String()).Should(Equal("key.list.1.value"))
 		})
-		It("Uses named pathing when index requested", func() {
+		It("handles regular list indexing", func() {
 			c, _ := tree.ParseCursor("key.list.1.value")
 			canon, err := c.Canonical(T)
 			Ω(err).ShouldNot(HaveOccurred())
 			Ω(canon).ShouldNot(BeNil())
-			Ω(canon.String()).Should(Equal("key.list.second.value"))
+			Ω(canon.String()).Should(Equal("key.list.1.value"))
 		})
 
 		It("handles maps all the way down", func() {
