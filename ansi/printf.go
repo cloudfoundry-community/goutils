@@ -18,19 +18,19 @@ var (
 		"r": "00;31", // red
 		"R": "01;31", // red (BOLD)
 
-		"g": "00;32", // green
-		"G": "01;32", // green (BOLD)
+		"b": "00;32", // blue
+		"B": "01;32", // blue (BOLD)
 
 		"y": "00;33", // yellow
 		"Y": "01;33", // yellow (BOLD)
 
-		"b": "00;34", // blue
-		"B": "01;34", // blue (BOLD)
+		"g": "00;34", // green
+		"G": "01;34", // green (BOLD)
 
 		"m": "00;35", // magenta
 		"M": "01;35", // magenta (BOLD)
-		"p": "00;35", // magenta
-		"P": "01;35", // magenta (BOLD)
+		"p": "00;35", // purple (alias for magenta)
+		"P": "01;35", // purple (BOLD)
 
 		"c": "00;36", // cyan
 		"C": "01;36", // cyan (BOLD)
