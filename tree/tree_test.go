@@ -33,6 +33,23 @@ func pathsOk(t *testing.T, msg string, n tree.Node, want ...string) {
 	}
 }
 
+func pathSegmentsOk(t *testing.T, msg string, n tree.Node, want [][]string) {
+	got := n.PathSegments()
+	if len(got) != len(want) {
+		t.Errorf("%s failed; wanted %d distinct , got %d:\n\nwanted:\n%v\n\ngot:\n%v", msg, len(want), len(got), want, got)
+	}
+	for i := range got {
+		if len(got[i]) != len(want[i]) {
+			t.Errorf("%s failed; wanted path #%d to have %d segments, got %d:\n\nwanted: %v\n\ngot: %v", msg, i, len(want[i]), len(got[i]), want[i], got[i])
+		}
+		for j := range got[i] {
+			if got[i][j] != want[i][j] {
+				t.Errorf("%s failed; segment %d of path #%d expected '%s', got '%s'", msg, j, i, want[i][j], got[i][j])
+			}
+		}
+	}
+}
+
 func TestDrawing(t *testing.T) {
 	drawsOk(t, "{a}",
 		tree.New("a"), `
@@ -114,6 +131,29 @@ func TestPaths(t *testing.T) {
 		"a/d")
 }
 
+func TestPathSegments(t *testing.T) {
+	pathSegmentsOk(t, "complicated nested structure",
+		tree.New(".",
+			tree.New("a",
+				tree.New("a1"),
+				tree.New("a2")),
+			tree.New("b",
+				tree.New("b1",
+					tree.New("b1i"),
+					tree.New("b1ii")),
+				tree.New("b2")),
+			tree.New("c")),
+		[][]string{
+			[]string{".", "a", "a1"},
+			[]string{".", "a", "a2"},
+			[]string{".", "b", "b1", "b1i"},
+			[]string{".", "b", "b1", "b1ii"},
+			[]string{".", "b", "b2"},
+			[]string{".", "c"},
+		},
+	)
+}
+
 func TestAppend(t *testing.T) {
 	tr := tree.New("a", tree.New("b"))
 	drawsOk(t, "{a -> b} before append", tr, `
@@ -122,7 +162,7 @@ func TestAppend(t *testing.T) {
 		    └── b`)
 
 	tr.Append(tree.New("c"))
-	drawsOk(t, "{a -> [b c]} before append", tr, `
+	drawsOk(t, "{a -> [b c]} after append", tr, `
 		.
 		└── a
 		    ├── b
