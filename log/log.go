@@ -158,6 +158,46 @@ func LogLevel() syslog.Priority {
 	return log.level
 }
 
+// Returns true if the looger will log DEBUG messages
+func IsDebug() bool {
+	return log.level >= syslog.LOG_DEBUG
+}
+
+// Returns true if the looger will log INFO messages
+func IsInfo() bool {
+	return log.level >= syslog.LOG_INFO
+}
+
+// Returns true if the looger will log NOTICE messages
+func IsNotice() bool {
+	return log.level >= syslog.LOG_NOTICE
+}
+
+// Returns true if the looger will log WARNING messages
+func IsWarning() bool {
+	return log.level >= syslog.LOG_WARNING
+}
+
+// Returns true if the looger will log ERR messages
+func IsError() bool {
+	return log.level >= syslog.LOG_ERR
+}
+
+// Returns true if the looger will log CRIT messages
+func IsCritical() bool {
+	return log.level >= syslog.LOG_CRIT
+}
+
+// Returns true if the looger will log ALERT messages
+func IsAlert() bool {
+	return log.level >= syslog.LOG_ALERT
+}
+
+// Returns true if the looger will log EMERG messages
+func IsEmergency() bool {
+	return log.level >= syslog.LOG_EMERG
+}
+
 // Validates the log level based on config strings
 func get_level(level string) syslog.Priority {
 	var priority syslog.Priority
