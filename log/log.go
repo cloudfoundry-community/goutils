@@ -28,6 +28,7 @@ type LogConfig struct {
 type logger struct {
 	out   io.Writer
 	level syslog.Priority
+	trace bool
 	ltype string
 }
 
@@ -63,7 +64,7 @@ func SetupLogging(cfg LogConfig) {
 			l.out = os.Stdout
 		}
 	}
-	l.level = get_level(cfg.Level)
+	l.level, l.trace = get_level(cfg.Level)
 	l.ltype = cfg.Type
 	log = &l
 }
@@ -86,6 +87,14 @@ func write(msg string, args ...interface{}) {
 		log.out.Write([]byte(msg))
 	} else {
 		os.Stderr.Write([]byte(msg))
+	}
+}
+
+// Logs a formatted Trace message.
+// Supports fmt.Sprintf style arguments.
+func Tracef(msg string, args ...interface{}) {
+	if log.trace && log.level >= syslog.LOG_DEBUG {
+		write("TRACE: "+msg, args...)
 	}
 }
 
@@ -158,6 +167,11 @@ func LogLevel() syslog.Priority {
 	return log.level
 }
 
+// Returns true if the looger will log TRACE messages
+func IsTrace() bool {
+	return log.trace && log.level >= syslog.LOG_DEBUG
+}
+
 // Returns true if the looger will log DEBUG messages
 func IsDebug() bool {
 	return log.level >= syslog.LOG_DEBUG
@@ -199,9 +213,14 @@ func IsEmergency() bool {
 }
 
 // Validates the log level based on config strings
-func get_level(level string) syslog.Priority {
+func get_level(level string) (syslog.Priority, bool) {
 	var priority syslog.Priority
+	var trace bool
+
 	switch strings.ToLower(level) {
+	case "trace":
+		priority = priority | syslog.LOG_DEBUG
+		trace = true
 	case "debug":
 		priority = priority | syslog.LOG_DEBUG
 	case "info":
@@ -226,7 +245,7 @@ func get_level(level string) syslog.Priority {
 		panic(fmt.Sprintf("Unsupported logging priority %q", level))
 	}
 
-	return priority
+	return priority, trace
 }
 
 // Validates the syslog priority, based on config strings
