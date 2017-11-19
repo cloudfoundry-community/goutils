@@ -1,6 +1,17 @@
 # goutils
 S&amp;W Go Utilities
 
+**NOTICE: THIS REPOSITORY IS BEING RETIRED**
+
+You may want to refer to these other repos, which will be
+supported moving forward:
+
+- [jhunt/go-log](https://github.com/jhunt/go-log)
+- [jhunt/go-ansi](https://github.com/jhunt/go-ansi)
+
+Additionally, `timestamp` and `botta` are both being deprecated
+for lack of use.
+
 ## How To Use
 
 Get:
