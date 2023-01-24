@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/starkandwayne/goutils/tree"
+	"github.com/cloudfoundry-community/goutils/tree"
 )
 
 func main() {

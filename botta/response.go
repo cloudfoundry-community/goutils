@@ -3,7 +3,7 @@ package botta
 import (
 	"net/http"
 
-	"github.com/starkandwayne/goutils/tree"
+	"github.com/cloudfoundry-community/goutils/tree"
 )
 
 // Represents the HTTP response from your API

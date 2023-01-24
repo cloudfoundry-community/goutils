@@ -5,8 +5,8 @@ import (
 
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
-	"github.com/starkandwayne/goutils/botta"
-	"github.com/starkandwayne/goutils/tree"
+	"github.com/cloudfoundry-community/goutils/botta"
+	"github.com/cloudfoundry-community/goutils/tree"
 )
 
 var _ = Describe("Response Obj", func() {

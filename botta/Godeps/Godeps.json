@@ -1,5 +1,5 @@
 {
-	"ImportPath": "github.com/starkandwayne/goutils/botta",
+	"ImportPath": "github.com/cloudfoundry-community/goutils/botta",
 	"GoVersion": "go1.6",
 	"Deps": [
 		{
@@ -137,11 +137,11 @@
 			"Rev": "a2ab8644e0b6a33df2cbe44673bd0f6ebba9abc3"
 		},
 		{
-			"ImportPath": "github.com/starkandwayne/goutils/ansi",
+			"ImportPath": "github.com/cloudfoundry-community/goutils/ansi",
 			"Rev": "b478d4e827014813fb3d4aad6e8db453b6b626d3"
 		},
 		{
-			"ImportPath": "github.com/starkandwayne/goutils/tree",
+			"ImportPath": "github.com/cloudfoundry-community/goutils/tree",
 			"Rev": "b478d4e827014813fb3d4aad6e8db453b6b626d3"
 		},
 		{

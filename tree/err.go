@@ -2,7 +2,7 @@ package tree
 
 import (
 	"fmt"
-	"github.com/starkandwayne/goutils/ansi"
+	"github.com/cloudfoundry-community/goutils/ansi"
 	"strings"
 )
 

@@ -17,13 +17,13 @@ for lack of use.
 Get:
 
 ```
-go get github.com/starkandwayne/goutils/{{pkg}}
+go get github.com/cloudfoundry-community/goutils/{{pkg}}
 ```
 
 Import:
 
 ```
-import "github.com/starkandwayne/goutils/{{pkg}}"
+import "github.com/cloudfoundry-community/goutils/{{pkg}}"
 ```
 
 ## Log

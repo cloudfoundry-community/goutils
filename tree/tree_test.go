@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/starkandwayne/goutils/tree"
+	"github.com/cloudfoundry-community/goutils/tree"
 )
 
 var trim = regexp.MustCompile("\t+")

@@ -9,7 +9,7 @@ import (
 
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
-	"github.com/starkandwayne/goutils/botta"
+	"github.com/cloudfoundry-community/goutils/botta"
 )
 
 func expect_body(req *http.Request, content string) {

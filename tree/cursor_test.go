@@ -10,7 +10,7 @@ import (
 	"github.com/onsi/gomega/types"
 	"gopkg.in/yaml.v2"
 
-	"github.com/starkandwayne/goutils/tree"
+	"github.com/cloudfoundry-community/goutils/tree"
 )
 
 type cursorMatcher struct {
